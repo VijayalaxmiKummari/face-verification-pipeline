@@ -6,7 +6,7 @@ templates/
 facepipe.key
 
 # Output
-landmarks.jpg
+/landmarks.jpg
 
 # Python
 __pycache__/
