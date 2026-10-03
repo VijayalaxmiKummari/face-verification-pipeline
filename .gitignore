@@ -1,0 +1,18 @@
+# Downloaded model files (fetched and checksum-verified on first use)
+models/
+
+# Biometric templates and the secret key - never commit these
+templates/
+facepipe.key
+
+# Output
+landmarks.jpg
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# macOS
+.DS_Store

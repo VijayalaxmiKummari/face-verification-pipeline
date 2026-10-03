@@ -1,0 +1,28 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install opencv-python-headless numpy
+      - name: Cache the model files
+        uses: actions/cache@v4
+        with:
+          path: models
+          key: models-${{ hashFiles('facepipe/models.py') }}
+      - name: Download and verify the models
+        run: python verify.py download-models
+      - name: Run the tests
+        run: python -m unittest discover tests -v
+      - name: Measure the effect of the frame clean-up
+        run: python scripts/evaluate_quality.py
